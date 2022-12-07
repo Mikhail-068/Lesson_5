@@ -22,7 +22,37 @@ menu = '''---------------------------------------------------
 def create_file(name, text):
     with open(f'{name}.txt', 'w', encoding='utf-8') as f:
         f.write(text)
+
+
 def show_directory():
+    my_directory = os.getcwd()
+    path = f'PATH:  {my_directory}'
+    print((len(path) + 1) * '-')
+    print(path)
+    print((len(path) + 1) * '-')
+    lst = os.listdir(my_directory)
+    for i in lst:
+        if os.path.isfile(os.path.join(my_directory, i)):
+            print('[FILE]', i)
+        else:
+            print('[DIR] ', i)
+    print((len(path) + 1) * '-')
+
+
+def show_directory_DIR():
+    my_directory = os.getcwd()
+    path = f'Path:  {my_directory}'
+    print((len(path) + 1) * '-')
+    print(path)
+    print((len(path) + 1) * '-')
+    lst = os.listdir(my_directory)
+    for i in lst:
+        if os.path.isdir(os.path.join(my_directory, i)):
+            print('[DIR]', i)
+
+    print((len(path) + 1) * '-')
+
+def show_directory_FILE():
     my_directory = os.getcwd()
     path = f'Path:  {my_directory}'
     print((len(path) + 1) * '-')
@@ -31,11 +61,9 @@ def show_directory():
     lst = os.listdir(my_directory)
     for i in lst:
         if os.path.isfile(os.path.join(my_directory, i)):
-            print('[file]', i)
-        else:
-            print('[dir] ', i)
-    print((len(path) + 1) * '-')
+            print('[FILE]', i)
 
+    print((len(path) + 1) * '-')
 
 def select():
     '''
@@ -82,14 +110,21 @@ def select():
             print('Для продолжения нажмите «Esc» ...')
             keyboard.wait('esc')
 
+        # Посмотреть только папки
+        elif user == 5:
+            show_directory_DIR()
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
+
+        # Посмотреть только файлы
+        elif user == 6:
+            show_directory_FILE()
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
+
         else:
             break
 
 
 if __name__ == '__main__':
     select()
-
-
-
-
-
