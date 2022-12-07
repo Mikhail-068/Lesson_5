@@ -1,4 +1,5 @@
-import os, shutil, keyboard
+import os, shutil, keyboard, platform
+from Victorina import vic
 from time import sleep
 
 menu = '''---------------------------------------------------
@@ -15,7 +16,7 @@ menu = '''---------------------------------------------------
 9. играть в викторину
 10. мой банковский счет
 11. смена рабочей директории 
-12. выход
+0. выход
 '''
 
 
@@ -89,7 +90,7 @@ def select():
             num = int(input('1. Удалить файл\n2. Удалить папку\n'))
             if num == 1:
                 del_file = input('Введите имя файла:\n')
-                os.remove(f'{del_file}.txt')
+                os.remove(f'{del_file}')
             elif num == 2:
                 del_folder = input('Введите имя папки:\n')
                 shutil.rmtree(del_folder)
@@ -122,9 +123,48 @@ def select():
             print('Для продолжения нажмите «Esc» ...')
             keyboard.wait('esc')
 
+        #  Инфо об операционной системе
+        elif user == 7:
+            print('-' * 30)
+            print(platform.platform())
+            print(*platform.architecture())
+            print('-' * 30)
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
+
+        # Создатель программы
+        elif user == 8:
+            print('*********************')
+            print('   == Mihail_AI ==   ')
+            print('*********************')
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
+
+        # Викторина
+        elif user == 9:
+            vic()
+
+        # Банковский счёт
+        elif user == 10:
+            print('----- C Б Е Р Б А Н К -------')
+            print('0000 0000 0000 0000 0000 0000')
+            print('-----------------------------')
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
+
+        # Смена рабочей директории (* дополнительно)
+        elif user == 11:
+            print('Наша директория:', os.getcwd())
+            print(os.listdir(os.getcwd()))
+            new_path = input('Введите новый путь: (Пример => «D:/»)\n')
+            os.chdir(new_path)
+            print('Наша директория:', os.getcwd())
+            print(os.listdir(os.getcwd()))
+            print('Для продолжения нажмите «Esc» ...')
+            keyboard.wait('esc')
         else:
             break
 
 
 if __name__ == '__main__':
-    select()
+    pass
